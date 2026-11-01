@@ -1,7 +1,9 @@
-# Proxus.Drivers (open drivers)
+# <img src="docs/brand/mark.svg" width="40" height="40" align="top" alt=""> Proxus.Drivers (open drivers)
 
 Industrial protocol drivers for .NET 10, written for Native AOT: no reflection, no runtime code generation, real
 async socket I/O and structured errors that say what failed, why, and what to try next.
+
+![Proxus Drivers: Modbus and OPC UA for .NET](docs/brand/social-preview.png)
 
 | Package | What it does |
 |---|---|
