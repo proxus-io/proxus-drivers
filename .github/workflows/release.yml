@@ -100,8 +100,8 @@ jobs:
 
   publish:
     needs: pack
-    # Only a tag the repository owner pushed publishes; tags from bots or other accounts stop here.
-    if: github.actor == github.repository_owner
+    # Only a tag the maintainer account pushed publishes; tags from bots or other accounts stop here.
+    if: github.actor == 'proxusiiotplatform'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     # The environment accepts only v* tags and holds the NUGET_USER variable.

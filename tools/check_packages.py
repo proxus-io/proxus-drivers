@@ -37,7 +37,7 @@ SOURCE_SUFFIXES = (".cs", ".csproj", ".props", ".targets", ".py", ".sh", ".c", "
 EMBEDDED_SOURCE = uuid.UUID("0E8A571B-6926-466E-B4AD-8AB04611F5FE")
 SOURCE_LINK = uuid.UUID("CC110556-A091-4D38-9FEC-25AB9A351A6A")
 ROOT = Path(__file__).resolve().parents[1]
-OPEN_REPOSITORY = "https://github.com/proxusiiotplatform/proxus-drivers"
+OPEN_REPOSITORY = "https://github.com/proxus-io/proxus-drivers"
 LOCAL_PATHS = [str(ROOT).encode(), b"/Users/", b"/home/", b"C:\\Users\\", b"/runner/work/", b"D:\\a\\"]
 
 
