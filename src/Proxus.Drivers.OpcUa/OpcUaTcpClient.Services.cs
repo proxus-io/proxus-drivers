@@ -200,7 +200,11 @@ public sealed partial class OpcUaTcpClient
         await _ioGate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            session = Session!.Value;
+            // The channel may have closed while this call waited for the gate (a malformed response ends it).
+            if (Session is not { } current || _socket is null || SecureChannel is null)
+                return Failure(DriverErrorKind.Transport, "UA_CHANNEL_LOST", "SecureChannel closed before ActivateSession.",
+                    DriverOperation.Handshake, DriverRetryDisposition.ReconnectAndRetry, DriverConnectionDisposition.Broken);
+            session = current;
             if (session.IsActivated) return DriverResult.Success();
             var tokenPolicy = session.UserIdentityTokens?.FirstOrDefault(policy => policy.TokenType == tokenType);
             if (tokenPolicy is null)

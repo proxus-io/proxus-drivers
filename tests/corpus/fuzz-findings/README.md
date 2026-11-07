@@ -14,7 +14,10 @@ dotnet run --project tools/Proxus.Drivers.CorpusFuzz -c Release -- --target opcu
 The OPC UA self-test `Golden corpus: fuzz reproducers stay structured and bounded` replays every file
 here. After the 2026-10-19 fixes, every input completes with success or a structured error and stays
 within the allocation bound. The `InvalidOperationException` and `NullReferenceException` rows are
-GC-UA-6, a timing-dependent race that is still open.
+GC-UA-6, a timing-dependent race fixed on 2026-10-20. On 2026-11-07 `opcua-client-07B43724D65F2604.bin` showed one
+more form in about one replay in twenty: `ActivateSessionAsync` read the Session after waiting for the I/O gate while
+the malformed response had closed the channel (`InvalidOperationException`, "Nullable object must have a value"). It
+now reports `UA_CHANNEL_LOST`; 400 consecutive replays of every reproducer passed.
 
 The file name starts with the target name. Findings marked "not reproducible" in the results did not
 recur on a single replay; they depend on timing.
